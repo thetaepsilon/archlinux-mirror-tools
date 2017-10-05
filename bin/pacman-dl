@@ -1,0 +1,17 @@
+#!/bin/sh
+# trick pacman into running as a normal user for downloading packages only.
+# Utilises fakeroot to do this;
+# certain directories must be writeable by the real user for this to work,
+# namely /var/lib/pacman/sync and /var/cache/pacman/pkg.
+# it is advised you keep /var/lib/pacman/local writeable only as root as per default,
+# as this wrapper doesn't (and can't) actually perform installation changes.
+# should be invoked as the user to run the download under.
+
+# the referenced config file can be the same as the normal one for the most part.
+# though, if you have any entries in IgnorePkg= of the regular pacman.conf for holding them back for manual upgrade,
+# the pacman-dl.conf below should have those entries removed, else this script won't download them at all.
+
+# invocation examples:
+# pacman-dl -u -w (assume -S is already passed)
+# pacman-dl <packagename>
+exec fakeroot -- pacman --sync --downloadonly --config /etc/pacman-dl.conf "$@";
