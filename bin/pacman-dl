@@ -15,3 +15,9 @@
 # pacman-dl -u -w (assume -S is already passed)
 # pacman-dl <packagename>
 exec fakeroot -- pacman --sync --downloadonly --config /etc/pacman-dl.conf "$@";
+e=$?;
+if test "$e" -eq 0; then {
+	echo "-- command completed successfully --" >&2;
+}; else {
+	echo "-- !! pacman exited with exit code $e !! --" >&2;
+}; fi;
