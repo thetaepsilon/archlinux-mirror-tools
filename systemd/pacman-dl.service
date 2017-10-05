@@ -1,0 +1,10 @@
+[Unit]
+Description=download system updates
+RequiresMountsFor=/var/lib/pacman/sync
+RequiresMountsFor=/var/lib/pacman/local
+RequiresMountsFor=/var/cache/pacman/pkg
+
+[Service]
+Type=simple
+User=packages
+ExecStart=/usr/bin/env pacman-dl --refresh --sysupgrade --color=never --noconfirm --noprogressbar
