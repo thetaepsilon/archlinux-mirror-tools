@@ -36,3 +36,5 @@ for repo in $repos; do {
 	echo "--- Syncing repo $repo: ${remote} -> ${local}";
 	arch-mirror-rsync "$remote" "$local";
 }; done;
+
+echo "--- All mirrors ran";
