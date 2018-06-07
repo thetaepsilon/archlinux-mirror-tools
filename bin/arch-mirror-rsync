@@ -9,6 +9,9 @@ if test -n "$ARCH_MIRROR_VERBOSE"; then {
 if test -n "$ARCH_MIRROR_LIMITDELETE"; then {
 	extraopts="$extraopts --max-delete=1000";
 }; fi;
+if test -z "$ARCH_MIRROR_MOTD"; then {
+	extraopts="$extraopts --no-motd";
+}; fi;
 
 exec rsync \
 	--recursive \
