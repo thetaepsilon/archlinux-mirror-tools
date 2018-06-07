@@ -1,0 +1,8 @@
+[Unit]
+Description=sync archlinux package mirror from preset: %i
+RequiresMountsFor=/srv/mirror/archpkgs/pkgs
+
+[Service]
+Type=simple
+User=arch-mirror-rsync
+ExecStart=/usr/bin/env arch-mirror-fetch /etc/pkg/archlinux-mirror-tools/fetch/%i/ /srv/mirror/archpkgs/pkgs
